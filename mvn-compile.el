@@ -18,7 +18,7 @@
   "Compile the given TARGET of a Maven project."
   (let ((default-directory
           (locate-dominating-file default-directory "pom.xml"))
-        (compile-command (format "mvn clean %s" target)))
+        (compile-command (format "mvn -q clean %s" target)))
     (when default-directory
       (call-interactively 'compile))))
 
