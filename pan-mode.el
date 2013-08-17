@@ -1,8 +1,6 @@
 ;;; pan-mode.el --- Emacs mode for the Pan language
 
-;; Copyright (C) 2013  Free Software Foundation, Inc.
-
-;; Author: Luis Fernando MuÃ±oz MejÃ­as <lfmunozmejias@gmail.com>
+;; Author: Luis Fernando Muñoz Mejías <lfmunozmejias@gmail.com>
 ;; Keywords:languages
 
 ;; Distributed under the terms of the Apache license version 2.0.  See
@@ -95,7 +93,7 @@ The rules are like this:
   (let ((st (make-syntax-table)))
     (modify-syntax-entry ?@ ". 1" st)
     (modify-syntax-entry ?{ "(}2b" st)
-    (modify-syntax-entry ?} ">b ){" st)
+    (modify-syntax-entry ?} "){>b" st)
     (modify-syntax-entry ?# "<" st)
     (modify-syntax-entry ?\n ">" st)
     st))
