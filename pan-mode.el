@@ -5,20 +5,8 @@
 ;; Author: Luis Fernando MuÃ±oz MejÃ­as <lfmunozmejias@gmail.com>
 ;; Keywords:languages
 
-;; This file is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation; either version 2, or (at your option)
-;; any later version.
-
-;; This file is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs; see the file COPYING.  If not, write to
-;; the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-;; Boston, MA 02111-1307, USA.
+;; Distributed under the terms of the Apache license version 2.0.  See
+;; https://www.apache.org/licenses/LICENSE-2.0.html
 
 ;;; Commentary:
 
@@ -39,22 +27,36 @@
 (add-to-list 'auto-mode-alist '("\\.pan\\'" . pan-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\'" . pan-mode))
 
-(defconst pan-font-lock-basics
-  (list (cons  (regexp-opt '("unique" "declaration" "object" "structure")
-                           t)
-               font-lock-builtin-face)
-        (cons (regexp-opt '("template" "variable" "type" "function" "bind"
-                            "prefix" "return" "if" "while" "for" "foreach"
-                            "error" "debug")
-                          t)
-              font-lock-keyword-face)
-        (cons (regexp-opt '("SELF" "TEMPLATE" "OBJECT" "FUNCTION")
-                          t)
-              font-lock-constant-face))
-  "Minimal syntax highlighting.")
+(defconst pan-template-qualifiers
+  '("unique" "structure" "object" "declaration")
+  "Pan template qualifiers.")
 
-(defvar pan-font-lock-keywords pan-font-lock-basics
-  "Default highlighting expressions for pan-mode.")
+(defconst pan-keywords
+  '("template" "if" "else" "return" "prefix" "bind" "function" "variable" "with"
+    "valid" "for" "foreach" "while")
+  "Keywords in the pan language.")
+
+(defconst pan-builtins
+  '("nlist" "list" "append" "merge" "format" "debug" "error" "match" "matches"))
+
+(defconst pan-reserved-globals
+  '("SELF" "OBJECT" "TEMPLATE" "FUNCTION" "true" "false"))
+
+(defconst pan-type-names
+  '("long" "string" "double" "number" "boolean")
+  "Names for the basic Pan types.")
+
+(defvar pan-tab-width 4 "Width of a tab in Pan mode.")
+
+(defvar pan-font-lock
+  (list
+   (cons (regexp-opt pan-keywords 'words) font-lock-keyword-face)
+   (cons (regexp-opt pan-reserved-globals 'words) font-lock-constant-face)
+   (cons (regexp-opt pan-template-qualifiers 'words) font-lock-variable-name-face)
+   (cons (regexp-opt pan-builtins 'words) font-lock-builtin-face))
+  "Font-lock for the Pan language.")
+
+
 
 (defun pan-indent-line ()
   "Indent current line as Pan code.
@@ -91,26 +93,31 @@ The rules are like this:
 
 (defvar pan-mode-syntax-table
   (let ((st (make-syntax-table)))
-    (modify-syntax-entry ?@ ". 1b" st)
-    (modify-syntax-entry ?{ ". 2b" st)
-    (modify-syntax-entry ?} ". 3b" st)
-    (modify-syntax-entry ?# "< c" st)
-    (modify-syntax-entry ?# "> c" st)
+    (modify-syntax-entry ?@ ". 1" st)
+    (modify-syntax-entry ?{ "(}2b" st)
+    (modify-syntax-entry ?} ">b ){" st)
+    (modify-syntax-entry ?# "<" st)
+    (modify-syntax-entry ?\n ">" st)
     st))
 
-(defun pan-mode ()
-  "Major mode for editing Pan code."
-  (interactive)
-  (kill-all-local-variables)
-  (set-syntax-table pan-mode-syntax-table)
-  (use-local-map pan-mode-map)
-  (set (make-local-variable 'font-lock-defaults)
-       '(pan-font-lock-keywords))
-  (set (make-local-variable 'indent-line-function)
-       'pan-indent-line)
-  (setq major-mode 'pan-mode)
-  (setq mode-name "Pan")
-  (run-hooks 'pan-mode-hook))
+;; (defun pan-mode ()
+;;   "Major mode for editing Pan code."
+;;   (interactive)
+;;   (kill-all-local-variables)
+;;   (set-syntax-table pan-mode-syntax-table)
+;;   (use-local-map pan-mode-map)
+;;   (set (make-local-variable 'font-lock-defaults)
+;;        '(pan-font-lock-keywords))
+;;   (set (make-local-variable 'indent-line-function)
+;;        'pan-indent-line)
+;;   (setq major-mode 'pan-mode)
+;;   (setq mode-name "Pan")
+;;   (run-hooks 'pan-mode-hook))
+
+(define-derived-mode pan-mode java-mode "Pan"
+  "Mode for editing Pan code."
+  :syntax-table pan-mode-syntax-table
+  (setq font-lock-defaults '(pan-font-lock)))
 
 
 (provide 'pan-mode)
