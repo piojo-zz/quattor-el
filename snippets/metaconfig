@@ -1,0 +1,4 @@
+# -*_ mode: snippet -*-
+# name: metabind
+# key: metabind
+bind "/software/components/metaconfig/services/{/${1}}/contents" = $2;

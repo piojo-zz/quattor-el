@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Bind a data type to a file configured by ncm-metaconfig
+# key: metabind
+# binding: direct-keybinding
+# expand-env: ((some-var some-value))
+# type: command
+# --
+bind "/software/components/metaconfig/{/$1}/contents" = $2;

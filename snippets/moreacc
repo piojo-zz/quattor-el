@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: "/${1}/uid" = ...;
+# key: moreacc
+# --
+
+"$1/uid" = $2;
+"$1/shell" = "$3";
+"$1/password" = "$4";
+"$1/comment" = "$5";
+"$1/groups/0" = "$6";
+"$1/createHome" = ${7:false};
+"$1/homeDir" = "$8";

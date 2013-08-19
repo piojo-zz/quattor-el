@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: prefix "/.../metaconfig/{..}";
+# key: metapf
+# --
+prefix "/software/components/metaconfig/services/{/$1}";
+
+"owner" = "${2:root}";
+"group" = "${2:root}";
+"module" = "$3";
+"daemon/0" = "$4";
+
+prefix "/software/components/metaconfig/services/{/$1}/contents";

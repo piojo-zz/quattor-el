@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: "/.../accounts/users/"
+# key: addacc
+# --
+prefix "/software/components/accounts/users/$1";
+
+"uid" = $2;
+"shell" = "$3";
+"password" = "$4";
+"comment" = "$5";
+"groups/0" = "$6";
+"createHome" = ${7:false};
+"homeDir" = "$8";

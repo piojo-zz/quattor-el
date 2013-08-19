@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: "/.../download/files"
+# key: downl
+# --
+
+prefix "/software/components/download/files";
+
+"{/$1}" = create("common/download/auth",
+    "href", "$2",
+    "perm", "$3");
