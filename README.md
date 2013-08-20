@@ -26,9 +26,10 @@ A work-in-progress major mode for the Pan language.
 
 Currently it has two problems:
 
-* Annotations are not ended correctly.  The `}` character is not seen
-  as a comment delimiter, and I still cannot figure out why.
-* Complex types are not indented correctly.
+* Annotations are not ended correctly.  The current workaround is to
+  end an annotation block with `@}`, so that Emacs thinks both
+  delimiters are made of two characters.
+* Complex types may not indented correctly.
 
 ## Snippets
 
