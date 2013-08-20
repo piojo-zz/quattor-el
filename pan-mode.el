@@ -56,10 +56,10 @@
 
 (defvar pan-font-lock
   (list
-   (cons (regexp-opt pan-keywords 'words) font-lock-keyword-face)
-   (cons (regexp-opt pan-reserved-globals 'words) font-lock-constant-face)
-   (cons (regexp-opt pan-template-qualifiers 'words) font-lock-variable-name-face)
-   (cons (regexp-opt pan-builtins 'words) font-lock-builtin-face))
+   (cons (regexp-opt pan-keywords 'symbols) font-lock-keyword-face)
+   (cons (regexp-opt pan-reserved-globals 'symbols) font-lock-constant-face)
+   (cons (regexp-opt pan-template-qualifiers 'symbols) font-lock-variable-name-face)
+   (cons (regexp-opt pan-builtins 'symbols) font-lock-builtin-face))
   "Font-lock for the Pan language.")
 
 
