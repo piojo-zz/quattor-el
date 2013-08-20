@@ -31,7 +31,7 @@
 
 (defconst pan-keywords
   '("template" "if" "else" "return" "prefix" "bind" "function" "variable" "with"
-    "include" "valid" "for" "foreach" "while")
+    "type" "include" "valid" "for" "foreach" "while")
   "Keywords in the pan language.")
 
 (defconst pan-builtins
@@ -59,6 +59,7 @@
    (cons (regexp-opt pan-keywords 'symbols) font-lock-keyword-face)
    (cons (regexp-opt pan-reserved-globals 'symbols) font-lock-constant-face)
    (cons (regexp-opt pan-template-qualifiers 'symbols) font-lock-variable-name-face)
+   (cons (regexp-opt pan-type-names 'symbols) font-lock-type-face)
    (cons (regexp-opt pan-builtins 'symbols) font-lock-builtin-face))
   "Font-lock for the Pan language.")
 
@@ -99,13 +100,14 @@ The rules are like this:
 
 (defvar pan-mode-syntax-table
   (let ((st (make-syntax-table)))
-    (modify-syntax-entry ?@ ". 1" st)
-    (modify-syntax-entry ?{ "(}2b" st)
-    (modify-syntax-entry ?} "){>b" st)
     (modify-syntax-entry ?# "<" st)
     (modify-syntax-entry ?\n ">" st)
+    (modify-syntax-entry ?@ ". 13b" st)
+    (modify-syntax-entry ?{ "(}2b" st)
+    (modify-syntax-entry ?} "){4b" st)
     (modify-syntax-entry ?' "\"")
     st))
+
 
 ;; (defun pan-mode ()
 ;;   "Major mode for editing Pan code."
