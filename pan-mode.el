@@ -31,14 +31,22 @@
 
 (defconst pan-keywords
   '("template" "if" "else" "return" "prefix" "bind" "function" "variable" "with"
-    "valid" "for" "foreach" "while")
+    "include" "valid" "for" "foreach" "while")
   "Keywords in the pan language.")
 
 (defconst pan-builtins
-  '("nlist" "list" "append" "merge" "format" "debug" "error" "match" "matches"))
+  '("nlist" "list" "append" "merge" "format" "debug" "error" "match" "matches"
+    "create" "index" "length" "replace" "splice" "split" "substr" "to_lowercase"
+    "to_uppercase" "traceback" "deprecated" "base64_decode" "base64_encode"
+    "escape" "unescape" "first" "key" "next" "prepend" "splice" "is_boolean"
+    "is_defined" "is_double" "is_list" "is_long" "is_nlist" "is_null"
+    "is_number" "is_property" "is_resource" "is_string" "to_boolean" "to_double"
+    "to_long" "to_string" "clone" "delete" "exists" "path_exists" "if_exists"
+    "value")
+  "Built-ins in the Pan language.")
 
 (defconst pan-reserved-globals
-  '("SELF" "OBJECT" "TEMPLATE" "FUNCTION" "true" "false"))
+  '("SELF" "OBJECT" "TEMPLATE" "FUNCTION" "true" "false" "null"))
 
 (defconst pan-type-names
   '("long" "string" "double" "number" "boolean")
@@ -96,6 +104,7 @@ The rules are like this:
     (modify-syntax-entry ?} "){>b" st)
     (modify-syntax-entry ?# "<" st)
     (modify-syntax-entry ?\n ">" st)
+    (modify-syntax-entry ?' "\"")
     st))
 
 ;; (defun pan-mode ()
