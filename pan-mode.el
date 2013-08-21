@@ -31,7 +31,7 @@
 
 (defconst pan-keywords
   '("template" "if" "else" "return" "prefix" "bind" "function" "variable" "with"
-    "type" "include" "valid" "for" "foreach" "while")
+    "final"  "type" "include" "valid" "for" "foreach" "while")
   "Keywords in the pan language.")
 
 (defconst pan-builtins
