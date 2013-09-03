@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name:  prefix "/.../components/";
+# key: pfcmp
+# --
+prefix "/software/components/$1";
