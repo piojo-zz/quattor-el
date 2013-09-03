@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: "/.../dirperm/paths/" = append...
+# key: dppath
+# --
+include 'components/dirperm/config';
+
+"/software/components/dirperm/paths" = {
+    append(nlist(
+    "path", "$1",
+    "owner", "${2:root}:${3:root}",
+    "type", "${4:d}",
+    "perm", "${5:0755}"));
+    };
