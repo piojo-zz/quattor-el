@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: "/.../dirperm/paths/" = append...
+# key: dpentry
+# --
+
+append(nlist(
+"path", "$1",
+"owner", "${2:root}:${3:root}",
+"type", "${4:d}",
+"perm", "${5:0755}"));
