@@ -108,24 +108,11 @@ The rules are like this:
     (modify-syntax-entry ?' "\"")
     st))
 
-
-;; (defun pan-mode ()
-;;   "Major mode for editing Pan code."
-;;   (interactive)
-;;   (kill-all-local-variables)
-;;   (set-syntax-table pan-mode-syntax-table)
-;;   (use-local-map pan-mode-map)
-;;   (set (make-local-variable 'font-lock-defaults)
-;;        '(pan-font-lock-keywords))
-;;   (set (make-local-variable 'indent-line-function)
-;;        'pan-indent-line)
-;;   (setq major-mode 'pan-mode)
-;;   (setq mode-name "Pan")
-;;   (run-hooks 'pan-mode-hook))
-
 (define-derived-mode pan-mode java-mode "Pan"
   "Mode for editing Pan code."
   :syntax-table pan-mode-syntax-table
+  (setq comment-start "#")
+  (setq comment-end "")
   (setq font-lock-defaults '(pan-font-lock)))
 
 
