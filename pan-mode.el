@@ -100,9 +100,9 @@ The rules are like this:
 
 (defvar pan-mode-syntax-table
   (let ((st (make-syntax-table java-mode-syntax-table)))
-    (modify-syntax-entry ?@ ". 1" st)
-    (modify-syntax-entry ?{ "(} 2" st)
-    (modify-syntax-entry ?} "){ >" st)
+    (modify-syntax-entry ?@ ". 13b" st)
+    (modify-syntax-entry ?{ "(}2b" st)
+    (modify-syntax-entry ?} "){4b" st)
     (modify-syntax-entry ?# "<b" st)
     (modify-syntax-entry ?\n ">b" st)
     (modify-syntax-entry ?' "\"")
